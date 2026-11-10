@@ -1,21 +1,4 @@
----
-title: "Logging in REST Assured: See What Was Sent and What Came Back"
-slug: rest-assured-logging
-module: 1
-section: 5
-date: 2026-11-10
-author: André Maré
-category: rest-assured-foundations
-tags: [rest-assured, logging, debugging, java, api-testing]
-description: "Use REST Assured's log() to print requests and responses: everything, single parts, only when validation fails, only for errors, or only for one status code."
-readingTime: 7 min read
----
-
-Blog · **rest-assured-foundations**
-
 # Logging in REST Assured: See What Was Sent and What Came Back
-
-**André Maré** · November 10, 2026 · 7 min read
 
 Logging in REST Assured: Use REST Assured's log() to print requests and responses, either everything, single parts, only when validation fails, only for errors, or only for one status code.
 
@@ -200,13 +183,3 @@ void logTheResponseOnlyForOneStatusCode() {
 ## Wrapping Up
 
 `log()` before `when()` prints the request, and `log()` after `then()` prints the response. Use `all()` while you explore, use single parts such as `uri()` or `body()` to keep output short, and use `ifValidationFails()` in the suites you keep. `ifError()` and `ifStatusCodeIsEqualTo(..)` cover the cases in between. Be careful with logs that contain credentials.
-
-The next and last post of Module 1, [Reading REST Assured Failures](module-01-section-06-reading-rest-assured-failures.md), looks at the other half of debugging: the failure messages themselves, and why some chains report one failure while others report all of them.
-
-> **The code above, ready to run**
->
-> All twelve modules of the course are runnable tests against real HTTP APIs. [Start with Module 1](https://github.com/andre-mare/java-rest-assured-testing/tree/main/module-01) or [browse the full outline](https://github.com/andre-mare/java-rest-assured-testing/blob/main/REST%20Assured%20Outline.md).
-
----
-
-*Filed under:* rest-assured-foundations · *Tags:* rest-assured, logging, debugging, java, api-testing

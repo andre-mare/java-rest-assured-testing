@@ -1,21 +1,4 @@
----
-title: "Reading REST Assured Failures: Failure Messages and Eager Validation"
-slug: reading-rest-assured-failures
-module: 1
-section: 6
-date: 2026-11-10
-author: André Maré
-category: rest-assured-foundations
-tags: [rest-assured, junit, debugging, java, api-testing]
-description: "Learn to read REST Assured failure messages, why a then() chain stops at its first failing call, and how one body(..) call reports all its mismatches at once."
-readingTime: 8 min read
----
-
-Blog · **rest-assured-foundations**
-
 # Reading REST Assured Failures: Failure Messages and Eager Validation
-
-**André Maré** · November 10, 2026 · 8 min read
 
 Reading REST Assured Failures: Learn to read REST Assured failure messages, why a then() chain stops at its first failing call, and how one body(..) call reports all its mismatches at once.
 
@@ -211,13 +194,3 @@ Look at the second failure closely. The expected and actual values look the same
 ## Wrapping Up
 
 A REST Assured failure is a plain `AssertionError`. Its message starts with the number of failed expectations and then explains each one, naming the path and showing the expected and actual values. After `then()`, each call is checked at once, so a chain stops at its first failing call. The pairs inside one `body(..)` call are checked together and are all reported. Add `log().ifValidationFails()`, and the request and response are printed with the failure.
-
-This completes Module 1. [Module 2: Building Requests](https://github.com/andre-mare/java-rest-assured-testing/tree/main/module-02) moves from reading responses to building requests: path, query and form parameters, headers, cookies, bodies, every HTTP method and multipart uploads.
-
-> **The code above, ready to run**
->
-> All twelve modules of the course are runnable tests against real HTTP APIs. [Start with Module 1](https://github.com/andre-mare/java-rest-assured-testing/tree/main/module-01) or [browse the full outline](https://github.com/andre-mare/java-rest-assured-testing/blob/main/REST%20Assured%20Outline.md).
-
----
-
-*Filed under:* rest-assured-foundations · *Tags:* rest-assured, junit, debugging, java, api-testing

@@ -1,21 +1,4 @@
----
-title: "First REST Assured Assertions: Status, Content Type, Headers, Body Paths and Response Time"
-slug: first-rest-assured-assertions
-module: 1
-section: 4
-date: 2026-11-10
-author: André Maré
-category: rest-assured-foundations
-tags: [rest-assured, hamcrest, gpath, java, api-testing]
-description: "Check every part of an HTTP response with REST Assured: status codes and lines, content types, case-insensitive headers, GPath body paths, lists, Float numbers, problem details and response time."
-readingTime: 10 min read
----
-
-Blog · **rest-assured-foundations**
-
 # First REST Assured Assertions: Status, Content Type, Headers, Body Paths and Response Time
-
-**André Maré** · November 10, 2026 · 10 min read
 
 First REST Assured Assertions: Check every part of an HTTP response with REST Assured, covering status codes and lines, content types, case-insensitive headers, GPath body paths, lists, Float numbers, problem details and response time.
 
@@ -272,13 +255,3 @@ Response time is measured on the client, so it includes the network and the JVM.
 ## Wrapping Up
 
 After `then()`, you can check the status code and line, the content type, any header, any value in the body and the response time. Each check takes a value or a Hamcrest matcher. GPath reaches into objects and lists, collects fields across a list and calls methods such as `size()`. Remember that decimals are `Float` by default, and that `ContentType.JSON` accepts every `+json` type.
-
-The next post, [Logging in REST Assured](module-01-section-05-rest-assured-logging.md), shows how to see exactly what was sent and what came back, and how to log only when a test fails.
-
-> **The code above, ready to run**
->
-> All twelve modules of the course are runnable tests against real HTTP APIs. [Start with Module 1](https://github.com/andre-mare/java-rest-assured-testing/tree/main/module-01) or [browse the full outline](https://github.com/andre-mare/java-rest-assured-testing/blob/main/REST%20Assured%20Outline.md).
-
----
-
-*Filed under:* rest-assured-foundations · *Tags:* rest-assured, hamcrest, gpath, java, api-testing

@@ -1,21 +1,4 @@
----
-title: "Where REST Assured Requests Go: baseUri, port, basePath and Static Defaults"
-slug: where-rest-assured-requests-go
-module: 1
-section: 3
-date: 2026-11-10
-author: André Maré
-category: rest-assured-foundations
-tags: [rest-assured, junit, java, api-testing, configuration]
-description: "Learn how REST Assured builds a URL from baseUri, port, basePath and the path, when an absolute URL wins, and why static defaults on RestAssured are global state."
-readingTime: 7 min read
----
-
-Blog · **rest-assured-foundations**
-
 # Where REST Assured Requests Go: baseUri, port, basePath and Static Defaults
-
-**André Maré** · November 10, 2026 · 7 min read
 
 Where REST Assured Requests Go: Learn how REST Assured builds a URL from baseUri, port, basePath and the path, when an absolute URL wins, and why static defaults on RestAssured are global state.
 
@@ -174,13 +157,3 @@ Static defaults are short, but they apply to the whole JVM. Keep these points in
 ## Wrapping Up
 
 REST Assured builds every URL from `baseUri`, `port`, `basePath` and the path, and a complete URL in `get(..)` wins over all of them. Values set on the request are explicit and safe to run in parallel. Static defaults on `RestAssured` are convenient, but they are global state that must be undone with `RestAssured.reset()`. Without a port, REST Assured uses 8080, so set the port explicitly.
-
-The next post, [First REST Assured Assertions](module-01-section-04-first-rest-assured-assertions.md), checks everything a response carries: the status line, content type, headers, body paths, lists, numbers and response time.
-
-> **The code above, ready to run**
->
-> All twelve modules of the course are runnable tests against real HTTP APIs. [Start with Module 1](https://github.com/andre-mare/java-rest-assured-testing/tree/main/module-01) or [browse the full outline](https://github.com/andre-mare/java-rest-assured-testing/blob/main/REST%20Assured%20Outline.md).
-
----
-
-*Filed under:* rest-assured-foundations · *Tags:* rest-assured, junit, java, api-testing, configuration

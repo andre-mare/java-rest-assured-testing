@@ -1,21 +1,4 @@
----
-title: "Your First REST Assured Request: Testing a Real HTTP API with JUnit"
-slug: your-first-rest-assured-request
-module: 1
-section: 1
-date: 2026-11-10
-author: André Maré
-category: rest-assured-foundations
-tags: [rest-assured, junit, java, api-testing, given-when-then]
-description: "Write your first REST Assured test: start a real HTTP API with @BeforeAll, send a request with given/when/then, and check the status code and JSON body."
-readingTime: 7 min read
----
-
-Blog · **rest-assured-foundations**
-
 # Your First REST Assured Request: Testing a Real HTTP API with JUnit
-
-**André Maré** · November 10, 2026 · 7 min read
 
 Your First REST Assured Request: Write your first REST Assured test, start a real HTTP API with `@BeforeAll`, send a request with given/when/then, and check the status code and JSON body.
 
@@ -171,13 +154,3 @@ Hamcrest comes with REST Assured as a dependency, so you don't add it to the POM
 ## Wrapping Up
 
 A REST Assured test is a real HTTP round trip written as one sentence: given a request, when it is sent, then the response looks like this. Start the API under test in `@BeforeAll`, point `given()` at it with `baseUri(..)` and `port(..)`, and check both the status code and the body.
-
-The next post, [The Anatomy of a REST Assured Test](module-01-section-02-anatomy-of-a-rest-assured-test.md), takes this chain apart. It shows the three types behind given/when/then and the shorter forms you will meet in other code bases.
-
-> **The code above, ready to run**
->
-> All twelve modules of the course are runnable tests against real HTTP APIs, from this first request to OAuth 2.0 tokens from Keycloak. [Start with Module 1](https://github.com/andre-mare/java-rest-assured-testing/tree/main/module-01) or [browse the full outline](https://github.com/andre-mare/java-rest-assured-testing/blob/main/REST%20Assured%20Outline.md).
-
----
-
-*Filed under:* rest-assured-foundations · *Tags:* rest-assured, junit, java, api-testing, given-when-then

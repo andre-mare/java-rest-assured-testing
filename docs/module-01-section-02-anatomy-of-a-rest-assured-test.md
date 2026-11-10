@@ -1,21 +1,4 @@
----
-title: "The Anatomy of a REST Assured Test: RequestSpecification, Response and ValidatableResponse"
-slug: anatomy-of-a-rest-assured-test
-module: 1
-section: 2
-date: 2026-11-10
-author: André Maré
-category: rest-assured-foundations
-tags: [rest-assured, junit, java, api-testing, given-when-then]
-description: "Take a REST Assured test apart: the three types behind given/when/then, the syntactic sugar, the shorter forms, stored responses and a first path parameter."
-readingTime: 7 min read
----
-
-Blog · **rest-assured-foundations**
-
 # The Anatomy of a REST Assured Test: RequestSpecification, Response and ValidatableResponse
-
-**André Maré** · November 10, 2026 · 7 min read
 
 The Anatomy of a REST Assured Test: Take a REST Assured test apart, covering the three types behind given/when/then, the syntactic sugar, the shorter forms, stored responses and a first path parameter.
 
@@ -181,13 +164,3 @@ The request goes to `/api/v1/accounts/acc-1001`. REST Assured also URL-encodes t
 ## Wrapping Up
 
 `given()` builds a `RequestSpecification`, an HTTP method sends it and returns a `Response`, and `then()` turns that into a `ValidatableResponse` that checks each expectation as you add it. `when()` and `and()` are only there to read well, and every shorter form is the same chain with a step left out or stored in a variable.
-
-The next post, [Where REST Assured Requests Go](module-01-section-03-where-rest-assured-requests-go.md), looks at how REST Assured builds the URL from `baseUri`, `port`, `basePath` and the path, and why static defaults on `RestAssured` need care.
-
-> **The code above, ready to run**
->
-> All twelve modules of the course are runnable tests against real HTTP APIs. [Start with Module 1](https://github.com/andre-mare/java-rest-assured-testing/tree/main/module-01) or [browse the full outline](https://github.com/andre-mare/java-rest-assured-testing/blob/main/REST%20Assured%20Outline.md).
-
----
-
-*Filed under:* rest-assured-foundations · *Tags:* rest-assured, junit, java, api-testing, given-when-then
