@@ -8,6 +8,11 @@ This module covers the basics of REST Assured: how a test is put together, where
   - [Table of Contents](#table-of-contents)
   - [The Domain: an Accounts API](#the-domain-an-accounts-api)
   - [Running the Module](#running-the-module)
+    - [Prerequisites](#prerequisites)
+    - [From the Command Line](#from-the-command-line)
+    - [From Your IDE](#from-your-ide)
+    - [Test Reports](#test-reports)
+  - [Guides](#guides)
   - [Sections](#sections)
     - [Section 1: Your First Request](#section-1-your-first-request)
     - [Section 2: The Anatomy of a Test](#section-2-the-anatomy-of-a-test)
@@ -49,20 +54,58 @@ A single account has these fields (JSON objects are unordered, so the order on t
 
 ## Running the Module
 
+### Prerequisites
+
+- **JDK 26 or later.** The build compiles with `--release 26`.
+- **Maven 3.9 or later.** The project has no Maven Wrapper, so use an installed `mvn`.
+
+Nothing else is needed. Each test class starts the Accounts API itself on a free port of `localhost`, so there is no server, database or Docker to set up. See [Getting Started](../README.md#getting-started) in the main README for cloning the repository.
+
+### From the Command Line
+
 Run these commands from the repository root.
 
 | Goal | Command | Result |
 | --- | --- | --- |
 | Run the module | `mvn test -pl module-01` | 36 tests pass; `DeliberatelyFailingTest` is excluded |
+| Run one section | `mvn test -pl module-01 -Dtest='com/example/module_01/section_03/*'` | 5 tests pass |
 | Run one class | `mvn test -pl module-01 -Dtest=FirstAssertionsTest` | 14 tests pass |
+| Run one test method | `mvn test -pl module-01 -Dtest=FirstAssertionsTest#contentType` | 1 test passes |
 | Read the logging output | `mvn test -pl module-01 -Dtest=LoggingTest` | 5 tests pass, with requests and responses in the console |
 | Run the failure demo | `mvn test -pl module-01 -Dtest=DeliberatelyFailingTest -DexcludedGroups=none` | `BUILD FAILURE` with 5 failed tests, as intended |
+
+You can also run the same commands from inside the `module-01` folder by leaving out `-pl module-01`, for example `mvn test -Dtest=FirstRequestTest`.
+
+The build should end with `BUILD SUCCESS`. Some tests log requests and responses on purpose, so JSON in the console is expected and is not a sign of failure.
+
+### From Your IDE
+
+Open the repository root (not just `module-01`) as a Maven project in IntelliJ IDEA, Eclipse or VS Code with the Java extensions, so the parent POM is picked up. Then run any test class or method with the run icon next to it. The IDE runs every class you choose, including `DeliberatelyFailingTest`, because the tag exclusion only applies to Maven's Surefire plugin.
+
+### Test Reports
+
+After a Maven run, Surefire writes a report per test class to `module-01/target/surefire-reports/`: a `.txt` summary and an `.xml` file, which also holds the console output of each test.
+
+## Guides
+
+Each section has a step-by-step guide in the [`docs`](../docs) folder at the repository root. The guides explain the concepts behind the tests, walk through the code, and point out common mistakes. Read a section's guide, then run and change its tests.
+
+| Section | Guide |
+| --- | --- |
+| 1. Your First Request | [Your First REST Assured Request: Testing a Real HTTP API with JUnit](../docs/module-01-section-01-your-first-rest-assured-request.md) |
+| 2. The Anatomy of a Test | [The Anatomy of a REST Assured Test: RequestSpecification, Response and ValidatableResponse](../docs/module-01-section-02-anatomy-of-a-rest-assured-test.md) |
+| 3. Where Requests Go | [Where REST Assured Requests Go: baseUri, port, basePath and Static Defaults](../docs/module-01-section-03-where-rest-assured-requests-go.md) |
+| 4. First Assertions | [First REST Assured Assertions: Status, Content Type, Headers, Body Paths and Response Time](../docs/module-01-section-04-first-rest-assured-assertions.md) |
+| 5. Logging | [Logging in REST Assured: See What Was Sent and What Came Back](../docs/module-01-section-05-rest-assured-logging.md) |
+| 6. Reading Failures | [Reading REST Assured Failures: Failure Messages and Eager Validation](../docs/module-01-section-06-reading-rest-assured-failures.md) |
 
 ## Sections
 
 Each section has its own package under [`src/test/java/com/example/module_01`](src/test/java/com/example/module_01).
 
 ### Section 1: Your First Request
+
+**Guide:** [module-01-section-01-your-first-rest-assured-request.md](../docs/module-01-section-01-your-first-rest-assured-request.md)
 
 **What it tests:** that the health endpoint answers, and what it says.
 
@@ -78,6 +121,8 @@ Each section has its own package under [`src/test/java/com/example/module_01`](s
 - **`body("status", equalTo("UP"))`** reads the value at the path `status` in the JSON body and checks it with a Hamcrest matcher. REST Assured brings Hamcrest with it.
 
 ### Section 2: The Anatomy of a Test
+
+**Guide:** [module-01-section-02-anatomy-of-a-rest-assured-test.md](../docs/module-01-section-02-anatomy-of-a-rest-assured-test.md)
 
 **What it tests:** the same request written in each of the forms you will find in real code bases.
 
@@ -95,6 +140,8 @@ Each section has its own package under [`src/test/java/com/example/module_01`](s
 
 ### Section 3: Where Requests Go
 
+**Guide:** [module-01-section-03-where-rest-assured-requests-go.md](../docs/module-01-section-03-where-rest-assured-requests-go.md)
+
 **What it tests:** how REST Assured builds the URL, set per request or as static defaults.
 
 | Class | What it tests |
@@ -110,6 +157,8 @@ Each section has its own package under [`src/test/java/com/example/module_01`](s
 - **Static defaults are global state.** They apply to every request in the JVM. Undo them with `RestAssured.reset()`, and don't use them in classes that run in parallel. Module 5 replaces them with specifications.
 
 ### Section 4: First Assertions
+
+**Guide:** [module-01-section-04-first-rest-assured-assertions.md](../docs/module-01-section-04-first-rest-assured-assertions.md)
 
 **What it tests:** the status, content type, headers, body and response time of the Accounts API.
 
@@ -132,6 +181,8 @@ Each section has its own package under [`src/test/java/com/example/module_01`](s
 
 ### Section 5: Logging
 
+**Guide:** [module-01-section-05-rest-assured-logging.md](../docs/module-01-section-05-rest-assured-logging.md)
+
 **What it tests:** nothing new about the API; it shows what REST Assured can print.
 
 | Class | What it tests |
@@ -146,6 +197,8 @@ Each section has its own package under [`src/test/java/com/example/module_01`](s
 - **Logs can contain secrets**, such as `Authorization` headers. Module 5 shows how to hide them.
 
 ### Section 6: Reading Failures
+
+**Guide:** [module-01-section-06-reading-rest-assured-failures.md](../docs/module-01-section-06-reading-rest-assured-failures.md)
 
 **What it tests:** what REST Assured reports when a check fails.
 
