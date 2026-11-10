@@ -10,6 +10,7 @@ This folder holds the step-by-step guides for the [REST Assured course](../READM
   - [Module 1: Foundations](#module-1-foundations)
   - [Module 2: Building Requests](#module-2-building-requests)
   - [Module 3: Validating Responses in Depth](#module-3-validating-responses-in-depth)
+  - [Module 4: Extracting Values and Mapping Objects](#module-4-extracting-values-and-mapping-objects)
 
 ## How to Use the Guides
 
@@ -60,3 +61,15 @@ How to check any part of a response precisely: GPath for JSON, root paths, numbe
 | 5 | [Response-Aware Matchers in REST Assured: Using the Response to Check Itself](module-03-section-05-rest-assured-response-aware-matchers.md) | Checking values the server chooses, such as a new id in the `Location` header, with a lambda or `endsWithPath(..)`, and one body value against another |
 | 6 | [Response Cookies in REST Assured: Values, Security Attributes and detailedCookie()](module-03-section-06-rest-assured-response-cookies.md) | Checking cookie values and the `Secure`, `HttpOnly`, `SameSite`, `Path` and `Max-Age` attributes of a session cookie, and reading a `Cookie` object |
 | 7 | [XML and HTML in REST Assured: Elements, Attributes, Depth-First Search and Namespaces](module-03-section-07-rest-assured-xml-and-html.md) | XML paths and attributes, `find` and `findAll` on elements, depth-first search with `**`, namespaces with `declareNamespace(..)`, and lenient HTML |
+
+## Module 4: Extracting Values and Mapping Objects
+
+How to get data out of responses, as single values or as Java records, how to configure the object mapper, and how to chain requests in which each step uses what the previous one returned. The tests run against a Customers and Consents API modelled on open banking account access consents. See the [Module 4 README](../module-04/README.md) for the code and how to run it.
+
+| Section | Guide | What you will learn |
+| --- | --- | --- |
+| 1 | [Extracting Values in REST Assured: extract(), path(..) and ExtractableResponse](module-04-section-01-rest-assured-extracting-values.md) | Extracting a value, a list, headers and the whole response, using a value in the next request, and why you validate before you extract |
+| 2 | [JsonPath and XmlPath in REST Assured: Typed Getters, Maps, Objects and JSON From Anywhere](module-04-section-02-rest-assured-jsonpath-and-xmlpath.md) | Typed getters that convert values, maps and mapped objects, and reading JSON and XML that didn't come from an HTTP call |
+| 3 | [Mapping Responses to Java Records in REST Assured: as(..), TypeRef and Unknown Fields](module-04-section-03-rest-assured-mapping-to-java-records.md) | Mapping bodies to records with `as(..)`, generic types with `TypeRef`, unknown fields in Jackson 3, and AssertJ assertions on records |
+| 4 | [Configuring the Object Mapper in REST Assured: Jackson 3, ObjectMapperType and a Strict JsonMapper](module-04-section-04-rest-assured-object-mapper-configuration.md) | Choosing a mapper with `ObjectMapperType`, the lenient default, a strict `JsonMapper`, and the 6.3 factory interfaces |
+| 5 | [Chaining Requests in REST Assured: Location Headers, Hypermedia Links and a Consent Flow](module-04-section-05-rest-assured-chaining-requests.md) | Following `Location` headers and `_links`, the full consent flow from customer to balances, and testing what a consent must refuse |
