@@ -17,6 +17,7 @@ This folder holds the step-by-step guides for the [REST Assured course](../READM
   - [Module 8: Filters and Extensibility](#module-8-filters-and-extensibility)
   - [Module 9: Data-Driven Tests and API Workflows](#module-9-data-driven-tests-and-api-workflows)
   - [Module 10: Stubbing Dependencies with WireMock](#module-10-stubbing-dependencies-with-wiremock)
+  - [Module 11: Spring Boot Integration](#module-11-spring-boot-integration)
 
 ## How to Use the Guides
 
@@ -150,3 +151,14 @@ How to test an API whose own dependency you don't control: REST Assured calls yo
 | 2 | [Simulating Provider Faults With WireMock: Errors, Delays, Resets and Broken JSON](module-10-section-02-rest-assured-wiremock-faults.md) | Server errors, delays, reset connections, broken JSON, rate limiting and unknown currencies, and what your API's clients should see for each |
 | 3 | [Verifying Outgoing Calls With WireMock: What Your API Sent to Its Dependency](module-10-section-03-rest-assured-wiremock-verifying-calls.md) | `verify(..)` with exact counts, query parameters and headers, one retry for a `503`, no retry for a `500`, and reading recorded requests |
 | 4 | [WireMock Response Templates and Scenarios: Stubs That Adapt](module-10-section-04-rest-assured-wiremock-templates-and-scenarios.md) | One templated stub for every currency, and scenarios in which the provider fails and recovers, to prove a retry gives up or saves a request |
+
+## Module 11: Spring Boot Integration
+
+The ways to test a Spring Boot API with REST Assured: `RestAssuredMockMvc` without a server, a web slice with Spring Security, and plain REST Assured against the whole application on a random port, plus keeping versions aligned under Spring Boot's dependency management. The tests run against a Spring Boot 4.1 accounts service secured as an OAuth 2.0 resource server. See the [Module 11 README](../module-11/README.md) for the code and how to run it.
+
+| Section | Guide | What you will learn |
+| --- | --- | --- |
+| 1 | [RestAssuredMockMvc in Standalone Mode: Testing a Spring Controller Without a Server](module-11-section-01-rest-assured-mockmvc-standalone.md) | Testing a controller with `standaloneSetup(..)`, no server and no Spring context, and what that mode leaves out |
+| 2 | [A Web Slice With Spring Security: RestAssuredMockMvc, @WebMvcTest and jwt()](module-11-section-02-rest-assured-webmvctest-spring-security.md) | Testing the security rules in a `@WebMvcTest` slice with Spring Security's `jwt()` post-processor, `401`, `403` `insufficient_scope` and problem details |
+| 3 | [Testing Spring Boot on a Random Port With REST Assured: @SpringBootTest and Real Tokens](module-11-section-03-rest-assured-spring-boot-random-port.md) | The whole application on a random port over real HTTP, with signed test tokens that check signature, expiry, audience and scope |
+| 4 | [Keeping Versions Aligned: REST Assured, JUnit and Jackson Under Spring Boot's BOM](module-11-section-04-rest-assured-spring-boot-version-alignment.md) | What Spring Boot 4.1 manages, why the first imported BOM wins, and checking resolved versions with `dependency:tree` |
