@@ -14,6 +14,7 @@ This folder holds the step-by-step guides for the [REST Assured course](../READM
   - [Module 5: Reusable Specifications and Configuration](#module-5-reusable-specifications-and-configuration)
   - [Module 6: Schema and Contract Validation](#module-6-schema-and-contract-validation)
   - [Module 7: Authentication and Transport Security](#module-7-authentication-and-transport-security)
+  - [Module 8: Filters and Extensibility](#module-8-filters-and-extensibility)
 
 ## How to Use the Guides
 
@@ -112,3 +113,15 @@ How to test protected APIs, including everything that must happen when credentia
 | 4 | [Sessions and CSRF in REST Assured: SessionFilter, htmlPath and a Form Login](module-07-section-04-rest-assured-sessions-and-csrf.md) | Reading a CSRF token with `htmlPath()`, keeping a session with a `SessionFilter`, setting the session id explicitly, and a missing or reused CSRF token |
 | 5 | [TLS and Mutual TLS in REST Assured: Trust Stores, Key Stores and an SSLContext](module-07-section-05-rest-assured-tls-and-mutual-tls.md) | Why `relaxedHTTPSValidation()` is the wrong fix, trusting a certificate with a trust store, presenting a client certificate, and passing a JDK `SSLContext` |
 | 6 | [Credentials on Redirects in REST Assured: Sensitive Headers Stripped Across Origins](module-07-section-06-rest-assured-credentials-on-redirects.md) | How REST Assured 6.1 drops `Authorization` and `Cookie` on cross-origin redirects, testing what a redirect target receives, and the opt-out |
+
+## Module 8: Filters and Extensibility
+
+How to change every request and response in one place with filters, sign requests, mask personal data in logs, write a custom authentication scheme, read misbehaving responses with parsers, and react to failures with listeners. The tests run against a payments API that requires signed requests. See the [Module 8 README](../module-08/README.md) for the code and how to run it.
+
+| Section | Guide | What you will learn |
+| --- | --- | --- |
+| 1 | [Writing Filters in REST Assured: Filter, FilterContext and OrderedFilter](module-08-section-01-rest-assured-writing-filters.md) | Filters that change requests and see responses, lambda filters, filters that fail a test, `OrderedFilter`, and filters in a specification or globally |
+| 2 | [Useful Filters for REST Assured: Timing, Masked Logs and Repairing Responses](module-08-section-02-rest-assured-useful-filters.md) | Timing every exchange, a log with IBANs and names masked, the built-in logging filters, and repairing a response with `ResponseBuilder` |
+| 3 | [Signing Requests in REST Assured: HTTP Message Signatures With an OrderedFilter](module-08-section-03-rest-assured-signing-requests.md) | Signing requests with RFC 9421 and a `Content-Digest` in a filter that runs last, and proving the server rejects unsigned, tampered, wrongly signed and stale requests |
+| 4 | [A Custom Authentication Scheme in REST Assured: ContextAuthenticationScheme for an API Key](module-08-section-04-rest-assured-custom-authentication-scheme.md) | An API key scheme with `ContextAuthenticationScheme`, removing it with `auth().none()`, replacing it, and why a scheme beats a header |
+| 5 | [Parsers and Failure Listeners in REST Assured: Wrong Content Types and Evidence on Failure](module-08-section-05-rest-assured-parsers-and-failure-listeners.md) | Reading JSON sent as `text/plain` with a parser, why a spec's parser doesn't reach chained checks, and collecting evidence with a failure listener |
