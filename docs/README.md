@@ -15,6 +15,7 @@ This folder holds the step-by-step guides for the [REST Assured course](../READM
   - [Module 6: Schema and Contract Validation](#module-6-schema-and-contract-validation)
   - [Module 7: Authentication and Transport Security](#module-7-authentication-and-transport-security)
   - [Module 8: Filters and Extensibility](#module-8-filters-and-extensibility)
+  - [Module 9: Data-Driven Tests and API Workflows](#module-9-data-driven-tests-and-api-workflows)
 
 ## How to Use the Guides
 
@@ -125,3 +126,15 @@ How to change every request and response in one place with filters, sign request
 | 3 | [Signing Requests in REST Assured: HTTP Message Signatures With an OrderedFilter](module-08-section-03-rest-assured-signing-requests.md) | Signing requests with RFC 9421 and a `Content-Digest` in a filter that runs last, and proving the server rejects unsigned, tampered, wrongly signed and stale requests |
 | 4 | [A Custom Authentication Scheme in REST Assured: ContextAuthenticationScheme for an API Key](module-08-section-04-rest-assured-custom-authentication-scheme.md) | An API key scheme with `ContextAuthenticationScheme`, removing it with `auth().none()`, replacing it, and why a scheme beats a header |
 | 5 | [Parsers and Failure Listeners in REST Assured: Wrong Content Types and Evidence on Failure](module-08-section-05-rest-assured-parsers-and-failure-listeners.md) | Reading JSON sent as `text/plain` with a parser, why a spec's parser doesn't reach chained checks, and collecting evidence with a failure listener |
+
+## Module 9: Data-Driven Tests and API Workflows
+
+How to test many inputs without copying tests, generate tests at run time, test multi-step workflows, check the HTTP semantics payment APIs depend on, and wait for asynchronous work. The tests run against a payment lifecycle API, from initiation to execution. See the [Module 9 README](../module-09/README.md) for the code and how to run it.
+
+| Section | Guide | What you will learn |
+| --- | --- | --- |
+| 1 | [Parameterized API Tests With REST Assured: Validation Rules as a Table](module-09-section-01-rest-assured-parameterized-api-tests.md) | A validation matrix in a `@CsvSource` text block, boundary values, `@FieldSource` and `@MethodSource`, a class per currency with `@ParameterizedClass`, and logging only failures |
+| 2 | [Dynamic API Tests With REST Assured: @TestFactory and dynamicContainer](module-09-section-02-rest-assured-dynamic-tests.md) | Generating security tests for every endpoint at run time, grouping them with `dynamicContainer`, and when to choose dynamic over parameterized tests |
+| 3 | [API Workflows With REST Assured: Ordered Steps Versus Independent Tests](module-09-section-03-rest-assured-api-workflows.md) | A payment lifecycle as ordered steps sharing one instance, why independent tests are better, and testing the transitions that must be refused |
+| 4 | [HTTP Semantics in REST Assured: Idempotency Keys, ETags and Link Pagination](module-09-section-04-rest-assured-http-semantics.md) | Idempotent replay with an `Idempotency-Key`, `304`, `428` and `412` with ETags, and following `Link` headers through every page |
+| 5 | [Testing Asynchronous APIs With REST Assured: 202 Accepted, Retry-After and Awaitility](module-09-section-05-rest-assured-asynchronous-apis.md) | Polling a `Location` with Awaitility instead of `Thread.sleep`, respecting `Retry-After`, and waiting for any final state before checking which one |
