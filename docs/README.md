@@ -16,6 +16,7 @@ This folder holds the step-by-step guides for the [REST Assured course](../READM
   - [Module 7: Authentication and Transport Security](#module-7-authentication-and-transport-security)
   - [Module 8: Filters and Extensibility](#module-8-filters-and-extensibility)
   - [Module 9: Data-Driven Tests and API Workflows](#module-9-data-driven-tests-and-api-workflows)
+  - [Module 10: Stubbing Dependencies with WireMock](#module-10-stubbing-dependencies-with-wiremock)
 
 ## How to Use the Guides
 
@@ -138,3 +139,14 @@ How to test many inputs without copying tests, generate tests at run time, test 
 | 3 | [API Workflows With REST Assured: Ordered Steps Versus Independent Tests](module-09-section-03-rest-assured-api-workflows.md) | A payment lifecycle as ordered steps sharing one instance, why independent tests are better, and testing the transitions that must be refused |
 | 4 | [HTTP Semantics in REST Assured: Idempotency Keys, ETags and Link Pagination](module-09-section-04-rest-assured-http-semantics.md) | Idempotent replay with an `Idempotency-Key`, `304`, `428` and `412` with ETags, and following `Link` headers through every page |
 | 5 | [Testing Asynchronous APIs With REST Assured: 202 Accepted, Retry-After and Awaitility](module-09-section-05-rest-assured-asynchronous-apis.md) | Polling a `Location` with Awaitility instead of `Thread.sleep`, respecting `Retry-After`, and waiting for any final state before checking which one |
+
+## Module 10: Stubbing Dependencies with WireMock
+
+How to test an API whose own dependency you don't control: REST Assured calls your API, and WireMock plays the third-party API it calls. The tests run against a quote service that asks an FX provider for exchange rates. See the [Module 10 README](../module-10/README.md) for the code and how to run it.
+
+| Section | Guide | What you will learn |
+| --- | --- | --- |
+| 1 | [Stubbing a Dependency With WireMock: Testing Your API With REST Assured](module-10-section-01-rest-assured-wiremock-stubbing-basics.md) | `WireMockExtension`, strict request patterns, a stubbed rate and half-even rounding, unmatched requests, and input that never reaches the provider |
+| 2 | [Simulating Provider Faults With WireMock: Errors, Delays, Resets and Broken JSON](module-10-section-02-rest-assured-wiremock-faults.md) | Server errors, delays, reset connections, broken JSON, rate limiting and unknown currencies, and what your API's clients should see for each |
+| 3 | [Verifying Outgoing Calls With WireMock: What Your API Sent to Its Dependency](module-10-section-03-rest-assured-wiremock-verifying-calls.md) | `verify(..)` with exact counts, query parameters and headers, one retry for a `503`, no retry for a `500`, and reading recorded requests |
+| 4 | [WireMock Response Templates and Scenarios: Stubs That Adapt](module-10-section-04-rest-assured-wiremock-templates-and-scenarios.md) | One templated stub for every currency, and scenarios in which the provider fails and recovers, to prove a retry gives up or saves a request |
