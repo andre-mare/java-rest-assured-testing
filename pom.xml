@@ -22,7 +22,7 @@
 		<module>module-09</module>
 		<module>module-10</module>
 		<module>module-11</module>
-		<!--<module>module-12</module> -->
+		<module>module-12</module>
 	</modules>
 
 	<properties>

@@ -1,0 +1,64 @@
+{
+  "realm": "open-banking",
+  "enabled": true,
+  "accessTokenLifespan": 300,
+  "sslRequired": "none",
+  "clientScopes": [
+    {
+      "name": "accounts:read",
+      "description": "Read account information",
+      "protocol": "openid-connect",
+      "attributes": { "include.in.token.scope": "true", "display.on.consent.screen": "false" }
+    },
+    {
+      "name": "payments:write",
+      "description": "Initiate payments",
+      "protocol": "openid-connect",
+      "attributes": { "include.in.token.scope": "true", "display.on.consent.screen": "false" }
+    }
+  ],
+  "clients": [
+    {
+      "clientId": "tpp-accounts",
+      "name": "Account information TPP",
+      "enabled": true,
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "accounts-secret",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "defaultClientScopes": [],
+      "optionalClientScopes": ["accounts:read"],
+      "protocolMappers": [
+        {
+          "name": "accounts-api audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": { "included.custom.audience": "accounts-api", "access.token.claim": "true", "id.token.claim": "false" }
+        }
+      ]
+    },
+    {
+      "clientId": "tpp-payments",
+      "name": "Payment initiation TPP",
+      "enabled": true,
+      "publicClient": false,
+      "clientAuthenticatorType": "client-secret",
+      "secret": "payments-secret",
+      "serviceAccountsEnabled": true,
+      "standardFlowEnabled": false,
+      "directAccessGrantsEnabled": false,
+      "defaultClientScopes": [],
+      "optionalClientScopes": ["accounts:read", "payments:write"],
+      "protocolMappers": [
+        {
+          "name": "accounts-api audience",
+          "protocol": "openid-connect",
+          "protocolMapper": "oidc-audience-mapper",
+          "config": { "included.custom.audience": "accounts-api", "access.token.claim": "true", "id.token.claim": "false" }
+        }
+      ]
+    }
+  ]
+}
