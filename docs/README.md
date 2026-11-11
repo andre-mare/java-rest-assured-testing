@@ -13,6 +13,7 @@ This folder holds the step-by-step guides for the [REST Assured course](../READM
   - [Module 4: Extracting Values and Mapping Objects](#module-4-extracting-values-and-mapping-objects)
   - [Module 5: Reusable Specifications and Configuration](#module-5-reusable-specifications-and-configuration)
   - [Module 6: Schema and Contract Validation](#module-6-schema-and-contract-validation)
+  - [Module 7: Authentication and Transport Security](#module-7-authentication-and-transport-security)
 
 ## How to Use the Guides
 
@@ -98,3 +99,16 @@ How to check the shape of responses instead of single values: JSON Schema 2020-1
 | 2 | [An Error Contract in REST Assured: RFC 9457 Problems With JSON Schema if/then/else](module-06-section-02-rest-assured-error-contract.md) | One problem schema for every error, `if`/`then`/`else` so a 422 must list its field errors, and testing the schema itself |
 | 3 | [XML Schema Validation in REST Assured: XSDs for ISO 20022 pain.001 and pain.002](module-06-section-03-rest-assured-xml-schema-iso-20022.md) | Validating payment files and status reports with `matchesXsdInClasspath(..)`, checking test data, and handling the `SAXParseException` of an invalid document |
 | 4 | [An OpenAPI Contract Filter for REST Assured: Every Response Checked Against the Spec](module-06-section-04-rest-assured-openapi-contract-filter.md) | A filter that checks every operation, status and body against an OpenAPI 3.1 description, and the difference between contract and functional tests |
+
+## Module 7: Authentication and Transport Security
+
+How to test protected APIs, including everything that must happen when credentials are missing, wrong or not enough: Basic authentication, OAuth 2.0 bearer tokens, the error responses of RFC 6749 and RFC 6750, sessions with CSRF, TLS and mutual TLS, and credentials on redirects. The tests run against an OAuth 2.0 authorization server and the resource server it protects. See the [Module 7 README](../module-07/README.md) for the code and how to run it.
+
+| Section | Guide | What you will learn |
+| --- | --- | --- |
+| 1 | [Basic Authentication in REST Assured: Challenged Versus Preemptive](module-07-section-01-rest-assured-basic-authentication.md) | The 401 challenge, challenged and preemptive Basic, why challenged Basic fails against a server that never challenges, and wrong credentials |
+| 2 | [OAuth 2.0 Bearer Tokens in REST Assured: The Client Credentials Grant and auth().oauth2(..)](module-07-section-02-rest-assured-oauth2-bearer-tokens.md) | Getting a token with the client credentials grant, `client_secret_basic` and `client_secret_post`, sending it with `auth().oauth2(..)`, and reading JWT claims |
+| 3 | [Negative Security Tests in REST Assured: Missing, Invalid, Expired and Insufficient Tokens](module-07-section-03-rest-assured-negative-security-tests.md) | Token endpoint errors, `WWW-Authenticate` responses for missing, expired, wrong-audience and tampered tokens, `401` versus `403`, and a missing scope |
+| 4 | [Sessions and CSRF in REST Assured: SessionFilter, htmlPath and a Form Login](module-07-section-04-rest-assured-sessions-and-csrf.md) | Reading a CSRF token with `htmlPath()`, keeping a session with a `SessionFilter`, setting the session id explicitly, and a missing or reused CSRF token |
+| 5 | [TLS and Mutual TLS in REST Assured: Trust Stores, Key Stores and an SSLContext](module-07-section-05-rest-assured-tls-and-mutual-tls.md) | Why `relaxedHTTPSValidation()` is the wrong fix, trusting a certificate with a trust store, presenting a client certificate, and passing a JDK `SSLContext` |
+| 6 | [Credentials on Redirects in REST Assured: Sensitive Headers Stripped Across Origins](module-07-section-06-rest-assured-credentials-on-redirects.md) | How REST Assured 6.1 drops `Authorization` and `Cookie` on cross-origin redirects, testing what a redirect target receives, and the opt-out |
