@@ -1,0 +1,122 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Payment Initiation API",
+    "version": "1.0.0",
+    "description": "The contract of the Module 6 API. OpenAPI 3.1 schemas are JSON Schema 2020-12."
+  },
+  "servers": [{ "url": "/pisp/v1" }],
+  "paths": {
+    "/domestic-payments": {
+      "post": {
+        "operationId": "initiateDomesticPayment",
+        "requestBody": {
+          "required": true,
+          "content": { "application/json": { "schema": { "$ref": "#/components/schemas/PaymentRequest" } } }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": { "Location": { "schema": { "type": "string" } } },
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Payment" } } }
+          },
+          "400": { "$ref": "#/components/responses/Problem" },
+          "415": { "$ref": "#/components/responses/Problem" },
+          "422": { "$ref": "#/components/responses/Problem" }
+        }
+      }
+    },
+    "/domestic-payments/{paymentId}": {
+      "get": {
+        "operationId": "getDomesticPayment",
+        "parameters": [{ "name": "paymentId", "in": "path", "required": true, "schema": { "type": "string" } }],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": { "application/json": { "schema": { "$ref": "#/components/schemas/Payment" } } }
+          },
+          "404": { "$ref": "#/components/responses/Problem" }
+        }
+      }
+    }
+  },
+  "components": {
+    "responses": {
+      "Problem": {
+        "description": "An RFC 9457 problem",
+        "content": { "application/problem+json": { "schema": { "$ref": "#/components/schemas/Problem" } } }
+      }
+    },
+    "schemas": {
+      "PaymentRequest": {
+        "type": "object",
+        "required": ["instructionId", "debtor", "creditor", "amount"],
+        "properties": {
+          "instructionId": { "type": "string", "maxLength": 35 },
+          "debtor": { "$ref": "#/components/schemas/Party" },
+          "creditor": { "$ref": "#/components/schemas/Party" },
+          "amount": { "$ref": "#/components/schemas/Amount" },
+          "remittanceInformation": { "type": "string", "maxLength": 140 },
+          "requestedExecutionDate": { "type": "string", "format": "date" }
+        }
+      },
+      "Payment": {
+        "type": "object",
+        "required": ["paymentId", "instructionId", "status", "debtor", "creditor", "amount", "createdAt", "_links"],
+        "additionalProperties": false,
+        "properties": {
+          "paymentId": { "type": "string", "pattern": "^pmt-[0-9]+$" },
+          "instructionId": { "type": "string", "maxLength": 35 },
+          "status": { "enum": ["RCVD", "PDNG", "ACSP", "ACSC", "RJCT"] },
+          "debtor": { "$ref": "#/components/schemas/Party" },
+          "creditor": { "$ref": "#/components/schemas/Party" },
+          "amount": { "$ref": "#/components/schemas/Amount" },
+          "remittanceInformation": { "type": "string" },
+          "requestedExecutionDate": { "type": "string" },
+          "createdAt": { "type": "string", "format": "date-time" },
+          "_links": {
+            "type": "object",
+            "required": ["self"],
+            "properties": { "self": { "type": "object", "required": ["href"], "properties": { "href": { "type": "string" } } } }
+          }
+        }
+      },
+      "Party": {
+        "type": "object",
+        "required": ["iban"],
+        "properties": {
+          "iban": { "type": "string", "pattern": "^[A-Z]{2}[0-9]{2}[A-Z0-9]{11,30}$" },
+          "name": { "type": "string", "maxLength": 70 }
+        }
+      },
+      "Amount": {
+        "type": "object",
+        "required": ["value", "currency"],
+        "additionalProperties": false,
+        "properties": {
+          "value": { "type": "string", "pattern": "^[0-9]{1,13}\\.[0-9]{2}$" },
+          "currency": { "type": "string", "pattern": "^[A-Z]{3}$" }
+        }
+      },
+      "Problem": {
+        "type": "object",
+        "required": ["type", "title", "status"],
+        "properties": {
+          "type": { "type": "string" },
+          "title": { "type": "string" },
+          "status": { "type": "integer" },
+          "detail": { "type": "string" },
+          "instance": { "type": "string" },
+          "errors": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["field", "detail"],
+              "properties": { "field": { "type": "string" }, "detail": { "type": "string" } }
+            }
+          }
+        }
+      }
+    }
+  }
+}

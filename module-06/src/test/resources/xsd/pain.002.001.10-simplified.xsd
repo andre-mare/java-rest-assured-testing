@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- A simplified subset of the ISO 20022 pain.002.001.10 (customer payment status report) schema:
+     the element names and nesting follow the standard, most optional elements are left out. -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="urn:iso:std:iso:20022:tech:xsd:pain.002.001.10"
+           targetNamespace="urn:iso:std:iso:20022:tech:xsd:pain.002.001.10"
+           elementFormDefault="qualified">
+
+  <xs:element name="Document">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="CstmrPmtStsRpt" type="CustomerPaymentStatusReport"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+
+  <xs:complexType name="CustomerPaymentStatusReport">
+    <xs:sequence>
+      <xs:element name="GrpHdr" type="GroupHeader"/>
+      <xs:element name="OrgnlGrpInfAndSts" type="OriginalGroupInformation"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="GroupHeader">
+    <xs:sequence>
+      <xs:element name="MsgId" type="Max35Text"/>
+      <xs:element name="CreDtTm" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="OriginalGroupInformation">
+    <xs:sequence>
+      <xs:element name="OrgnlMsgId" type="Max35Text"/>
+      <xs:element name="OrgnlMsgNmId" type="Max35Text"/>
+      <xs:element name="OrgnlNbOfTxs" type="xs:positiveInteger"/>
+      <xs:element name="GrpSts" type="GroupStatus"/>
+      <xs:element name="StsRsnInf" minOccurs="0" maxOccurs="unbounded">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="AddtlInf" type="Max105Text" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:simpleType name="Max35Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="35"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="Max105Text">
+    <xs:restriction base="xs:string">
+      <xs:minLength value="1"/>
+      <xs:maxLength value="105"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <!-- ExternalPaymentGroupStatus1Code: accepted technical validation, accepted settlement in process, ... rejected -->
+  <xs:simpleType name="GroupStatus">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="ACCP"/>
+      <xs:enumeration value="ACTC"/>
+      <xs:enumeration value="ACSP"/>
+      <xs:enumeration value="PART"/>
+      <xs:enumeration value="RJCT"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

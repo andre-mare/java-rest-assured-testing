@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/problem.schema.json",
+  "title": "Problem details (RFC 9457)",
+  "type": "object",
+  "required": ["type", "title", "status"],
+  "properties": {
+    "type": { "type": "string" },
+    "title": { "type": "string" },
+    "status": { "type": "integer", "minimum": 400, "maximum": 599 },
+    "detail": { "type": "string" },
+    "instance": { "type": "string" },
+    "errors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["field", "detail"],
+        "properties": { "field": { "type": "string" }, "detail": { "type": "string" } }
+      }
+    }
+  },
+  "if": { "properties": { "status": { "const": 422 } } },
+  "then": { "required": ["errors"] },
+  "else": { "not": { "required": ["errors"] } }
+}
