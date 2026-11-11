@@ -11,6 +11,7 @@ This folder holds the step-by-step guides for the [REST Assured course](../READM
   - [Module 2: Building Requests](#module-2-building-requests)
   - [Module 3: Validating Responses in Depth](#module-3-validating-responses-in-depth)
   - [Module 4: Extracting Values and Mapping Objects](#module-4-extracting-values-and-mapping-objects)
+  - [Module 5: Reusable Specifications and Configuration](#module-5-reusable-specifications-and-configuration)
 
 ## How to Use the Guides
 
@@ -73,3 +74,15 @@ How to get data out of responses, as single values or as Java records, how to co
 | 3 | [Mapping Responses to Java Records in REST Assured: as(..), TypeRef and Unknown Fields](module-04-section-03-rest-assured-mapping-to-java-records.md) | Mapping bodies to records with `as(..)`, generic types with `TypeRef`, unknown fields in Jackson 3, and AssertJ assertions on records |
 | 4 | [Configuring the Object Mapper in REST Assured: Jackson 3, ObjectMapperType and a Strict JsonMapper](module-04-section-04-rest-assured-object-mapper-configuration.md) | Choosing a mapper with `ObjectMapperType`, the lenient default, a strict `JsonMapper`, and the 6.3 factory interfaces |
 | 5 | [Chaining Requests in REST Assured: Location Headers, Hypermedia Links and a Consent Flow](module-04-section-05-rest-assured-chaining-requests.md) | Following `Location` headers and `_links`, the full consent flow from customer to balances, and testing what a consent must refuse |
+
+## Module 5: Reusable Specifications and Configuration
+
+How to remove repetition from a suite and configure REST Assured safely: request and response specifications, `RestAssuredConfig`, keeping secrets out of logs, and a JUnit 6 extension that replaces static configuration. The tests run against an account information API in the style of the UK Open Banking standard. See the [Module 5 README](../module-05/README.md) for the code and how to run it.
+
+| Section | Guide | What you will learn |
+| --- | --- | --- |
+| 1 | [Request Specifications in REST Assured: RequestSpecBuilder, Layered Specs and Overrides](module-05-section-01-rest-assured-request-specifications.md) | Building and layering request specifications, testing without credentials, overriding a header with `HeaderConfig`, and inspecting a specification |
+| 2 | [Response Specifications in REST Assured: Shared Expectations, Error Shapes and given(request, response)](module-05-section-02-rest-assured-response-specifications.md) | Shared expectations for success and errors, `then().spec(..)` and `given(request, response)`, and why a specification reports every failure at once |
+| 3 | [Client Configuration in REST Assured: Timeouts, Redirects and Charsets With RestAssuredConfig](module-05-section-03-rest-assured-client-configuration.md) | Connect and read timeouts with `Duration`, following redirects for GET, POST and all methods, and setting the default charset for decoding |
+| 4 | [Keeping Secrets Out of REST Assured Logs: blacklistHeader and Logging on Failure](module-05-section-04-rest-assured-secrets-in-logs.md) | Masking `Authorization` and `Cookie` headers with `blacklistHeader(..)`, masking when logging on failure, and testing what was logged |
+| 5 | [A JUnit Extension for REST Assured: Injected Specifications Instead of Static State](module-05-section-05-rest-assured-junit-extension.md) | A JUnit 6 extension that starts the API per class, injects specifications as parameters, and closes the API through the extension store |
