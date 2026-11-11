@@ -18,6 +18,7 @@ This folder holds the step-by-step guides for the [REST Assured course](../READM
   - [Module 9: Data-Driven Tests and API Workflows](#module-9-data-driven-tests-and-api-workflows)
   - [Module 10: Stubbing Dependencies with WireMock](#module-10-stubbing-dependencies-with-wiremock)
   - [Module 11: Spring Boot Integration](#module-11-spring-boot-integration)
+  - [Module 12: Real Infrastructure with Testcontainers](#module-12-real-infrastructure-with-testcontainers)
 
 ## How to Use the Guides
 
@@ -162,3 +163,13 @@ The ways to test a Spring Boot API with REST Assured: `RestAssuredMockMvc` witho
 | 2 | [A Web Slice With Spring Security: RestAssuredMockMvc, @WebMvcTest and jwt()](module-11-section-02-rest-assured-webmvctest-spring-security.md) | Testing the security rules in a `@WebMvcTest` slice with Spring Security's `jwt()` post-processor, `401`, `403` `insufficient_scope` and problem details |
 | 3 | [Testing Spring Boot on a Random Port With REST Assured: @SpringBootTest and Real Tokens](module-11-section-03-rest-assured-spring-boot-random-port.md) | The whole application on a random port over real HTTP, with signed test tokens that check signature, expiry, audience and scope |
 | 4 | [Keeping Versions Aligned: REST Assured, JUnit and Jackson Under Spring Boot's BOM](module-11-section-04-rest-assured-spring-boot-version-alignment.md) | What Spring Boot 4.1 manages, why the first imported BOM wins, and checking resolved versions with `dependency:tree` |
+
+## Module 12: Real Infrastructure with Testcontainers
+
+How to run REST Assured against real infrastructure in Docker, and make a large suite fast and organised: real OAuth 2.0 tokens from Keycloak, parallel execution, and tags with Maven profiles. The tests run against an API protected by a real Keycloak, and a reference data API. The Keycloak tests need Docker. See the [Module 12 README](../module-12/README.md) for the code and how to run it.
+
+| Section | Guide | What you will learn |
+| --- | --- | --- |
+| 1 | [Real OAuth 2.0 Tokens From Keycloak: REST Assured and Testcontainers](module-12-section-01-rest-assured-keycloak-testcontainers.md) | Keycloak in Docker with Testcontainers, OpenID Connect discovery, real tokens with the client credentials grant, and the claims a real server puts in them |
+| 2 | [Running REST Assured Tests in Parallel: JUnit Parallel Execution Without Shared State](module-12-section-02-rest-assured-parallel-execution.md) | Opt-in parallel execution with `junit-platform.properties` and `@Execution(CONCURRENT)`, and the rules that make REST Assured safe in parallel |
+| 3 | [Tags and Maven Profiles for REST Assured Suites: Smoke, Security and No-Docker Runs](module-12-section-03-rest-assured-tags-and-maven-profiles.md) | Tags and a composed `@SmokeTest`, Maven profiles that set `groups` and `excludedGroups`, tag expressions, and a suite in a pipeline |
