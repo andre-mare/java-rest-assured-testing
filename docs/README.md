@@ -12,6 +12,7 @@ This folder holds the step-by-step guides for the [REST Assured course](../READM
   - [Module 3: Validating Responses in Depth](#module-3-validating-responses-in-depth)
   - [Module 4: Extracting Values and Mapping Objects](#module-4-extracting-values-and-mapping-objects)
   - [Module 5: Reusable Specifications and Configuration](#module-5-reusable-specifications-and-configuration)
+  - [Module 6: Schema and Contract Validation](#module-6-schema-and-contract-validation)
 
 ## How to Use the Guides
 
@@ -86,3 +87,14 @@ How to remove repetition from a suite and configure REST Assured safely: request
 | 3 | [Client Configuration in REST Assured: Timeouts, Redirects and Charsets With RestAssuredConfig](module-05-section-03-rest-assured-client-configuration.md) | Connect and read timeouts with `Duration`, following redirects for GET, POST and all methods, and setting the default charset for decoding |
 | 4 | [Keeping Secrets Out of REST Assured Logs: blacklistHeader and Logging on Failure](module-05-section-04-rest-assured-secrets-in-logs.md) | Masking `Authorization` and `Cookie` headers with `blacklistHeader(..)`, masking when logging on failure, and testing what was logged |
 | 5 | [A JUnit Extension for REST Assured: Injected Specifications Instead of Static State](module-05-section-05-rest-assured-junit-extension.md) | A JUnit 6 extension that starts the API per class, injects specifications as parameters, and closes the API through the extension store |
+
+## Module 6: Schema and Contract Validation
+
+How to check the shape of responses instead of single values: JSON Schema 2020-12, a shared contract for errors, XML Schema for ISO 20022 messages, and checking every response against an OpenAPI description. The tests run against a payment initiation API in the style of PSD2. See the [Module 6 README](../module-06/README.md) for the code and how to run it.
+
+| Section | Guide | What you will learn |
+| --- | --- | --- |
+| 1 | [JSON Schema Validation in REST Assured: matchesJsonSchemaInClasspath and Draft 2020-12](module-06-section-01-rest-assured-json-schema-validation.md) | Validating whole responses against a draft 2020-12 schema, what a schema catches that value checks miss, inline schemas, and validating JSON without HTTP |
+| 2 | [An Error Contract in REST Assured: RFC 9457 Problems With JSON Schema if/then/else](module-06-section-02-rest-assured-error-contract.md) | One problem schema for every error, `if`/`then`/`else` so a 422 must list its field errors, and testing the schema itself |
+| 3 | [XML Schema Validation in REST Assured: XSDs for ISO 20022 pain.001 and pain.002](module-06-section-03-rest-assured-xml-schema-iso-20022.md) | Validating payment files and status reports with `matchesXsdInClasspath(..)`, checking test data, and handling the `SAXParseException` of an invalid document |
+| 4 | [An OpenAPI Contract Filter for REST Assured: Every Response Checked Against the Spec](module-06-section-04-rest-assured-openapi-contract-filter.md) | A filter that checks every operation, status and body against an OpenAPI 3.1 description, and the difference between contract and functional tests |
